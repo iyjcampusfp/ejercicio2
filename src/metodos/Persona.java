@@ -12,10 +12,26 @@ public class Persona {
     private double altura;
     /*************************************************************************************/
                                     //Contructores
+    //Constructor por Defecto.
+    public Persona(){
+        
+    }
     
+    //Constructor con los valores nombre, edad, sexo
+    public Persona( String nombre,int edad, char sexo ){
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sexo = sexo;
+    }
     
-    
-    
+    //Constructor con todos los valores (DNI se genera de forma aleatoria en el método).
+    public Persona( String nombre,int edad, char sexo, double peso, double altura ){
+        this.nombre = nombre;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.peso = peso;
+        this.altura = altura;
+    }    
     
     /**************************************************************************************/
                                     //Getters y Setters
@@ -65,7 +81,26 @@ public class Persona {
     /***************************************************************************************/
                                     //Métodos Personales
     
-    
+    @Override
+    public String toString(){
+        String textoADevolver;
+        
+        if( "".equals(getNombre()) ){
+            textoADevolver = "Atributos de la persona:" +
+                             "Sexo → " + getSexo() +
+                             "DNI → " + getDNI();
+        }else{
+            textoADevolver = "Atributos de la persona:" +
+                             "Nombre → " + getNombre() +
+                             "Edad → " + getEdad() +
+                             "Sexo → " + getSexo() +
+                             "DNI → " + getDNI() +
+                             "Peso → " + getPeso() +
+                             "Altura → " + getAltura();
+        }
+        
+        return textoADevolver;
+    }
     
     
     
