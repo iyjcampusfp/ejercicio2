@@ -14,7 +14,7 @@ public class Persona {
                                     //Contructores
     //Constructor por Defecto.
     public Persona(){
-
+        generaDNI();
     }
     
     //Constructor con los valores nombre, edad, sexo
@@ -22,6 +22,7 @@ public class Persona {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
+        generaDNI();
     }
     
     //Constructor con todos los valores (DNI se genera de forma aleatoria en el método).
@@ -31,6 +32,7 @@ public class Persona {
         this.sexo = sexo;
         this.peso = peso;
         this.altura = altura;
+        generaDNI();
     }    
     
     /**************************************************************************************/
@@ -145,7 +147,7 @@ public class Persona {
     
     
 
- private void generaDNI(){
+    private void generaDNI(){
         String DNI;
 
 
@@ -155,7 +157,6 @@ public class Persona {
        
         for(int i = 0;i<arrayCaracteres.length;i++){
             int aleatorio = (int) (Math.random()*10);
-            System.out.println("Aleatorio : " + aleatorio);
             arrayCaracteres[i] = aleatorio;
             numero  +=  arrayCaracteres[i];
            
