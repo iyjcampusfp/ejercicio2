@@ -14,7 +14,7 @@ public class Persona {
                                     //Contructores
     //Constructor por Defecto.
     public Persona(){
-        
+
     }
     
     //Constructor con los valores nombre, edad, sexo
@@ -81,6 +81,47 @@ public class Persona {
     /***************************************************************************************/
                                     //Métodos Personales
     
+    public int calcularIMC(){
+        
+        final double formula = getPeso()/(getAltura()*getAltura());
+        
+        System.out.println( formula );
+        
+        int test = -1;
+        
+        if( formula>=20 && formula<=25 ){
+            test = 0;
+        }else if( formula>25 ){
+            test = 1;
+        }
+        
+        return test;
+    }
+    
+    public boolean esMayorDeEdad(){
+        boolean mayoria = false;
+        
+        if(getEdad() >=18){
+            mayoria = true;
+        }
+        
+        return mayoria;
+    }
+    
+    private void comprobarSexo(char sexo){
+        //Constante para comprobar que el sexo por defecto sea Hombre
+        //y en caso de que sea M, sería mujer. Por ejemplo, si se introduce S,
+        //daría Hombre.
+        
+        final char prueba = 'H';
+        
+        if( sexo != 'M' ){
+            setSexo( prueba );
+        }else{
+            setSexo( sexo );
+        }
+    }
+    
     @Override
     public String toString(){
         String textoADevolver;
@@ -100,8 +141,106 @@ public class Persona {
         }
         
         return textoADevolver;
+    }   
+    
+    
+
+ private void generaDNI(){
+        String DNI;
+
+
+        int arrayCaracteres[];
+        arrayCaracteres = new int[8];
+        String numero = "";
+       
+        for(int i = 0;i<arrayCaracteres.length;i++){
+            int aleatorio = (int) (Math.random()*10);
+            System.out.println("Aleatorio : " + aleatorio);
+            arrayCaracteres[i] = aleatorio;
+            numero  +=  arrayCaracteres[i];
+           
+        }
+        int calculo =Integer.parseInt(numero);
+        //Calcular letra:
+        calculo = calculo % 23;
+       
+        //Letra
+        String letraDNI = "";
+             
+        switch(calculo){
+            case 0:
+                letraDNI = "T";
+                break;
+            case 1:
+                letraDNI = "R";
+                break;
+            case 2:
+                letraDNI = "W";
+                break;
+            case 3:
+                letraDNI = "A";
+                break;
+            case 4:
+                letraDNI = "G";
+                break;
+            case 5:
+                letraDNI = "M";
+                break;
+            case 6:
+                letraDNI = "Y";
+                break;
+            case 7:
+                letraDNI = "F";
+                break;
+            case 8:
+                letraDNI = "P";
+                break;
+            case 9:
+                letraDNI = "D";
+                break;
+            case 10:
+                letraDNI = "X";
+                break;
+            case 11:
+                letraDNI = "B";
+                break;
+            case 12:
+                letraDNI = "N";
+                break;
+            case 13:
+                letraDNI = "J";
+                break;  
+            case 14:
+                letraDNI = "Z";
+                break;
+            case 15:
+                letraDNI = "S";
+                break;
+            case 16:
+                letraDNI = "Q";
+                break;  
+            case 17:
+                letraDNI = "V";
+                break;
+            case 18:
+                letraDNI = "H";
+                break;
+            case 19:
+                letraDNI = "L";
+                break;
+            case 20:
+                letraDNI = "C";
+                break;
+            case 21:
+                letraDNI = "K";
+                break;
+            case 22:
+                letraDNI = "E";
+                break;    
+        }
+        //DNI Final
+        DNI = numero + letraDNI;
+        System.out.println("DNI : "+ DNI);
     }
-    
-    
-    
+
 }
