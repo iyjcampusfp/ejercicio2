@@ -4,8 +4,8 @@ public class Persona {
     /**************************************************************************************/
                                      //Atributos
     //Atributos de la Clase Persona
-    private String nombre;
-    private int edad;
+    private String nombre = "";
+    private int edad ;
     private String DNI;//Será automático , ya que será dado por un método
     private char sexo;//Será un char porque queremos saber si es H (hombre) o M (mujer)
     private double peso;
@@ -15,13 +15,14 @@ public class Persona {
     //Constructor por Defecto.
     public Persona(){
         generaDNI();
+        comprobarSexo(getSexo());
     }
     
     //Constructor con los valores nombre, edad, sexo
     public Persona( String nombre,int edad, char sexo ){
         this.nombre = nombre;
         this.edad = edad;
-        this.sexo = sexo;
+        comprobarSexo(sexo);
         generaDNI();
     }
     
@@ -29,7 +30,7 @@ public class Persona {
     public Persona( String nombre,int edad, char sexo, double peso, double altura ){
         this.nombre = nombre;
         this.edad = edad;
-        this.sexo = sexo;
+        comprobarSexo(sexo);
         this.peso = peso;
         this.altura = altura;
         generaDNI();
@@ -51,6 +52,7 @@ public class Persona {
     }
 
     public char getSexo(){
+        
         return this.sexo;
     }
 
@@ -76,18 +78,17 @@ public class Persona {
         this.peso = peso;
     }
     public void setAltura(double altura){
-        this.altura = altura;
-    }
-       
-    
-    /***************************************************************************************/
+       this.altura = altura;
+}
+
+ /***************************************************************************************/
                                     //Métodos Personales
     
     public int calcularIMC(){
         
         final double formula = getPeso()/(getAltura()*getAltura());
         
-        System.out.println( formula );
+ 
         
         int test = -1;
         
@@ -99,6 +100,21 @@ public class Persona {
         
         return test;
     }
+    //Método personal referente a (calcularIMC)
+    
+    //Descripción:
+    
+    public void indicarFormaFisica(){
+        if(calcularIMC() == 1){
+            System.out.println("Está sobre su peso ideal.");
+        }else if(calcularIMC() == 0){
+            System.out.println("Está en su peso ideal.");
+        }else if(calcularIMC() == -1){
+            System.out.println("Está por debajo de su peso ideal.");
+        }else{
+            System.out.println("Error");
+        }
+    }    
     
     public boolean esMayorDeEdad(){
         boolean mayoria = false;
@@ -118,7 +134,7 @@ public class Persona {
         final char prueba = 'H';
         
         if( sexo != 'M' ){
-            setSexo( prueba );
+            setSexo( prueba );            
         }else{
             setSexo( sexo );
         }
@@ -127,30 +143,22 @@ public class Persona {
     @Override
     public String toString(){
         String textoADevolver;
-        
-        if( "".equals(getNombre()) ){
-            textoADevolver = "Atributos de la persona:" +
-                             "Sexo → " + getSexo() +
-                             "DNI → " + getDNI();
-        }else{
-            textoADevolver = "Atributos de la persona:" +
-                             "Nombre → " + getNombre() +
-                             "Edad → " + getEdad() +
-                             "Sexo → " + getSexo() +
-                             "DNI → " + getDNI() +
-                             "Peso → " + getPeso() +
-                             "Altura → " + getAltura();
-        }
-        
+
+        textoADevolver = "Atributos de la persona:" +
+                         "\n Nombre → " + getNombre() +
+                         "\n Edad → " + getEdad() +
+                         "\n Sexo → " + getSexo() +
+                         "\n DNI → " + getDNI() +
+                         "\n Peso → " + getPeso() +
+                         "\n Altura → " + getAltura();
+
         return textoADevolver;
-    }   
+    }
     
     
 
-    private void generaDNI(){
-        String DNI;
-
-
+   private void generaDNI(){
+        
         int arrayCaracteres[];
         arrayCaracteres = new int[8];
         String numero = "";
@@ -240,8 +248,27 @@ public class Persona {
                 break;    
         }
         //DNI Final
-        DNI = numero + letraDNI;
-        System.out.println("DNI : "+ DNI);
+        this.DNI = numero + letraDNI;
     }
+   
+   /*********************************************************************************************/
+   /*                               Método personal:
+   *Descripción:
+                Método creado por nosotros, para imprimir la mayoría de edad ,
+                que recibimos mediante un boolean de otro Método(esMayorDeEdad)
+   */
+   public void imprimirMayoriaEdad(){
+       if(esMayorDeEdad() == true){
+           System.out.println("Es mayor de edad");
+       }else{
+           System.out.println("Es menor de edad");
 
+       }
+       
+   }
+   
+   
+   
+   
+   
 }
