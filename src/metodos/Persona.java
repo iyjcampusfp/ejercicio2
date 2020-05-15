@@ -1,7 +1,7 @@
 package metodos;
 
 public class Persona {
-    /**************************************************************************************/
+    //=================================================================================//
                                      //Atributos
     //Atributos de la Clase Persona
     private String nombre = "";
@@ -10,15 +10,16 @@ public class Persona {
     private char sexo;//Será un char porque queremos saber si es H (hombre) o M (mujer)
     private double peso;
     private double altura;
-    /*************************************************************************************/
+    //=================================================================================//
                                     //Contructores
-    //Constructor por Defecto.
+    //Constructor por Defecto. Generamos el DNI de forma automática y aplicamos
+    //el valor por defecto de sexo.
     public Persona(){
         generaDNI();
         comprobarSexo(getSexo());
     }
     
-    //Constructor con los valores nombre, edad, sexo
+    //Constructor con los valores nombre, edad y sexo.
     public Persona( String nombre,int edad, char sexo ){
         this.nombre = nombre;
         this.edad = edad;
@@ -36,7 +37,7 @@ public class Persona {
         generaDNI();
     }    
     
-    /**************************************************************************************/
+    //=================================================================================//
                                     //Getters y Setters
     //Getters 
     public String getNombre(){
@@ -52,7 +53,6 @@ public class Persona {
     }
 
     public char getSexo(){
-        
         return this.sexo;
     }
 
@@ -81,15 +81,15 @@ public class Persona {
        this.altura = altura;
 }
 
- /***************************************************************************************/
+    //=================================================================================//
                                     //Métodos Personales
     
+    //Más adelante usaremos este método en un método creado por nosotros,
+    //para facilitar la tarea de determinar su estado mediante un mensaje.
     public int calcularIMC(){
         
         final double formula = getPeso()/(getAltura()*getAltura());
-        
- 
-        
+
         int test = -1;
         
         if( formula>=20 && formula<=25 ){
@@ -100,22 +100,9 @@ public class Persona {
         
         return test;
     }
-    //Método personal referente a (calcularIMC)
     
-    //Descripción:
-    
-    public void indicarFormaFisica(){
-        if(calcularIMC() == 1){
-            System.out.println("Está sobre su peso ideal.");
-        }else if(calcularIMC() == 0){
-            System.out.println("Está en su peso ideal.");
-        }else if(calcularIMC() == -1){
-            System.out.println("Está por debajo de su peso ideal.");
-        }else{
-            System.out.println("Error");
-        }
-    }    
-    
+    //Más adelante usaremos este método en un método creado por nosotros,
+    //para facilitar la tarea de determinar su mayoría de edad mediante un mensaje.
     public boolean esMayorDeEdad(){
         boolean mayoria = false;
         
@@ -127,7 +114,7 @@ public class Persona {
     }
     
     private void comprobarSexo(char sexo){
-        //Constante para comprobar que el sexo por defecto sea Hombre
+        //Constante "prueba" para comprobar que el sexo por defecto sea Hombre
         //y en caso de que sea M, sería mujer. Por ejemplo, si se introduce S,
         //daría Hombre.
         
@@ -140,6 +127,7 @@ public class Persona {
         }
     }
     
+    //Método toString, sirve para devolver todos los datos de un objeto.
     @Override
     public String toString(){
         String textoADevolver;
@@ -156,8 +144,11 @@ public class Persona {
     }
     
     
-
-   private void generaDNI(){
+    //En este método, generamos una cadena de 8 números aleatorios y
+    //generamos la letra del DNI que le corresponda. Juntamos ambos
+    //resultados al atributo de la clase DNI, generando su valor de forma
+    //automática al llamarlo en los constructores.
+    private void generaDNI(){
         
         int arrayCaracteres[];
         arrayCaracteres = new int[8];
@@ -169,13 +160,13 @@ public class Persona {
             numero  +=  arrayCaracteres[i];
            
         }
-        int calculo =Integer.parseInt(numero);
+        int calculo = Integer.parseInt(numero);
         //Calcular letra:
         calculo = calculo % 23;
        
-        //Letra
+        
         String letraDNI = "";
-             
+        //Switch case para determinar la letra del DNI  
         switch(calculo){
             case 0:
                 letraDNI = "T";
@@ -247,28 +238,41 @@ public class Persona {
                 letraDNI = "E";
                 break;    
         }
-        //DNI Final
+        //Conceder el valor aleatorio al atributo DNI
         this.DNI = numero + letraDNI;
     }
    
-   /*********************************************************************************************/
-   /*                               Método personal:
-   *Descripción:
+   //=================================================================================//
+   //                             Métodos personales inventados:
+   
+    /*Descripción:
                 Método creado por nosotros, para imprimir la mayoría de edad ,
-                que recibimos mediante un boolean de otro Método(esMayorDeEdad)
-   */
-   public void imprimirMayoriaEdad(){
+                que recibimos mediante un boolean de otro Método(esMayorDeEdad).
+    */
+    public void imprimirMayoriaEdad(){
        if(esMayorDeEdad() == true){
            System.out.println("Es mayor de edad");
        }else{
            System.out.println("Es menor de edad");
-
-       }
-       
-   }
-   
-   
-   
-   
-   
+       }  
+    }
+    
+    /*Descripción:
+                Método creado por nosotros, para imprimir la forma física
+                que recibimos mediante un entero de otro Método(calcularIMC).
+                Así facilitamos la escritura.
+    */
+    
+    public void indicarFormaFisica(){
+        if(calcularIMC() == 1){
+            System.out.println("Está sobre su peso ideal.");
+        }else if(calcularIMC() == 0){
+            System.out.println("Está en su peso ideal.");
+        }else if(calcularIMC() == -1){
+            System.out.println("Está por debajo de su peso ideal.");
+        }else{
+            System.out.println("Error");
+        }
+    }    
+ 
 }

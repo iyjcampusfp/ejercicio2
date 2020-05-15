@@ -7,51 +7,39 @@ import metodos.Persona;
 public class Main {
 
     public static void main(String[] args) {
-        
-        //Declaro una clase para introducir texto por pantalla
-       /* 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Mete datos");
-                                       //"NOMBRE"   "EDAD"  "SEXO"  "PESO"  "ALTURA"
-        Persona prueba = new Persona(sc.nextLine(),sc.nextInt(),sc.next().charAt(0),sc.nextInt(),sc.nextDouble());
-        
-        //Persona prueba2 = new Persona("Isma",19,"H",70,1.70);
-        
-        prueba.calcularIMC();
-        
-        System.out.println(prueba.toString());
-        
-        prueba.imprimirMayoriaEdad();
-        
-        */
-        
-                                    //Creamos los objetos
+               
+        /*                      Creamos los objetos                                */
         //Creamos un objeto de tipo Scanner (sirve para introducir datos por teclado)
         //Descripción :Hemos creado tres variables , una para cada objeto
         Scanner sc1 = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
         Scanner sc3 = new Scanner(System.in);
-        /******************************************************************************/
-                                        //Intoduce los datos de los Objetos
+        
+        //=================================================================================//
+
+        /*                      Intoduce los datos de los Objetos                   */
         //1º OBJETO
         System.out.println("Introduce los datos del primer Objeto : ");
-        Persona person = new Persona(sc1.nextLine(),sc1.nextInt(),sc1.next().charAt(0),sc1.nextInt(),sc1.nextDouble());
+        Persona person = new Persona(sc1.nextLine(),sc1.nextInt(),
+                                     sc1.next().charAt(0),sc1.nextInt(),sc1.nextDouble());
+        
         //2º OBJETO
         System.out.println("Introduce los datos del segundo Objeto : ");        
         Persona personV2  = new Persona(sc2.nextLine(),sc2.nextInt(),sc2.next().charAt(0));
+        
         //3º OBJETO
         System.out.println("Introduce los datos del tercer Objeto : ");
         Persona personV3 = new Persona();
-        /**************************************************************************************/
-                            //Ahora le daremos valores a (personV3) con Setters
+        
+        //Ahora le daremos valores a (personV3) con Setters
         personV3.setNombre(sc3.nextLine());
         personV3.setEdad(sc3.nextInt());
         personV3.setSexo(sc3.next().charAt(0));
         personV3.setPeso(sc3.nextDouble());
         personV3.setAltura(sc3.nextDouble());
-        /*****************************************************************************************/
-                           //Aqui comprobaremos el peso ideal de los 3 objetos
+    //=================================================================================//
+    
+        /*              Aqui comprobaremos el peso ideal de los 3 objetos            */
         //1º Objeto
         System.out.println("Primer Objeto : ");
         person.indicarFormaFisica();
